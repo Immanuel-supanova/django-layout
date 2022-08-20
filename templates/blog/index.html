@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block title %}Blog{% endblock %}
+{% block body %}
+{% include 'blog/headers.html' %}
+<div style="margin:20px">
+{% for post in object_list %}
+		<ul class="card" style="list-style-type:none; margin-top:10px">
+			<div class="card-body">
+
+			<li><h1>{{post.title}}:</h1> {{post.author.first_name}} {{post.author.last_name}} |
+						{{ post.pub_date }}  {{ post.timestamp }}
+					<br/>{{post.body|slice:":200"|safe}}<a href="{% url 'article-detail'  post.pk %}" style="text-decoration:none">....read more</a></li>
+					<br>
+
+			</div>
+		</ul>
+{% endfor %}
+	</div>
+{% include 'blog/footer.html' %}
+{% endblock %}

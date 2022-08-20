@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block title %}Blog{% endblock %}
+{% load hitcount_tags %}
+
+{% block body %}
+{% include 'blog/headers.html' %}
+<div style="margin:20px">
+<br/>
+<div class="card">
+  <div class="card-body">
+
+<h1>{{post.title}}</h1>
+<small>By: {{post.author.first_name}} {{post.author.last_name}} {{post.author.username}}
+    {% if user.is_authenticated %}
+         {% if user.id == post.author.id %}
+           - <a href="{% url 'edit_post' post.pk %}">Edit</a>
+          <a href="{% url 'delete_post' post.pk %}"> Delete </a>
+         {% endif %}
+      {% endif %}
+</small><br>
+      <p>Views: {% get_hit_count for post %}</p>
+{{ post.pub_date }}
+{{ post.timestamp }}<br/><hr>
+{{ post.body|safe }}
+      <center>
+      {{ post.media|safe }}
+          </center>
+        </div>
+</div><br/>
+</div>
+{% include 'blog/footer.html' %}
+{% endblock %}
