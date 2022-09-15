@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    'register',
 
     'django_bootstrap5',
 
@@ -58,6 +56,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'system.urls'
+
+AUTH_USER_MODEL = 'register.User'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'demo@example.com'
 
 TEMPLATES = [
     {
@@ -79,7 +83,6 @@ WSGI_APPLICATION = 'system.wsgi.application'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 # Database
@@ -130,7 +133,7 @@ STATIC_ROOT = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
