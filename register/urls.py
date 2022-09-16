@@ -4,11 +4,10 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneVi
 from django.urls import path, reverse_lazy
 
 from .forms import LoginForm, UserPasswordChangeForm, UserPasswordResetForm
-from .views import UserCreateView, HomeView
+from .views import UserCreateView
 
 urlpatterns = [
     path('register/', UserCreateView.as_view(), name="user-create"),
-    path('', HomeView.as_view(), name="home"),
     path('login/', LoginView.as_view(template_name="auth/login.html", form_class=LoginForm), name="login"),
     path('logout/', LogoutView.as_view(template_name="auth/logged_out.html"), name="logout"),
     path(
