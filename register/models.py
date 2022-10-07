@@ -25,6 +25,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    date_joined = models.DateField(auto_now_add=True)
+    timestamp = models.TimeField(auto_now_add=True, blank=True, null=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
